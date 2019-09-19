@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TextImportAndSumExport {
 	/**
@@ -20,8 +22,6 @@ public class TextImportAndSumExport {
 			System.exit(1);
 		}
 
-
-
 		try {
 			//読み込みオブジェクトの作成
 			File file = new File(args[0]);
@@ -37,6 +37,11 @@ public class TextImportAndSumExport {
 			//書き込みファイルの生成
 			File result = new File(args[1]);
 			result.createNewFile();
+
+			String data;
+
+			List<Integer> num = new ArrayList<Integer>();
+
 
 
 
