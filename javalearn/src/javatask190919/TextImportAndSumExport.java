@@ -1,7 +1,9 @@
 package javatask190919;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class TextImportAndSumExport {
 	 *
 	 */
 
-	private static void main(String[] args) {
+	public static void main(String[] args) {
 		//パラメータ数が2個になっているか確認
 		if(args.length != 2) {
 			System.out.println("パラメータ数が過不足しています。パラメータは2個用意してください");
@@ -35,19 +37,37 @@ public class TextImportAndSumExport {
 			BufferedReader br = new BufferedReader(fr);
 
 			//書き込みファイルの生成
+
 			File result = new File(args[1]);
 			result.createNewFile();
+			FileWriter fw = new FileWriter(result);
+			BufferedWriter bw = new BufferedWriter(fw);
+
 
 			String data;
 
 			List<Integer> num = new ArrayList<Integer>();
+			while((data = br.readLine()) != null) {
+				num.add(Integer.parseInt(data));
+			}
+			int sum = 0;
+
+			for(int adnum : num) {
+				sum += adnum;
+			}
 
 
+			bw.write(String.valueOf(sum));
+			bw.flush();
+			bw.close();
+			br.close();
 
-
-		}catch(IOException e) {
-
-		}
+			}catch(IOException e) {
+				System.out.println(e);
+			}finally {
+				bw.close();
+				br.close();
+			}
 
 
 
