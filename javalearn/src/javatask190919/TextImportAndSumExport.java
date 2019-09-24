@@ -46,14 +46,14 @@ public static void main(String[] args) {
 			String data;
 
 			List<Integer> num = new ArrayList<Integer>();
+			int sum = 0, target = 0;
 			while((data = br.readLine()) != null) {
 				num.add(Integer.parseInt(data));
+				sum += num.get(target);
+				target += 1;
 			}
-			int sum = 0;
 
-			for(int adnum : num) {
-				sum += adnum;
-			}
+
 			bw.write(String.valueOf(sum));
 			bw.flush();
 			}catch(IOException e) {
