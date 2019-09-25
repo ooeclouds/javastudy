@@ -18,22 +18,21 @@ public class TextImportAndSumExport {
  */
 
 public static void main(String[] args) {
-	//パラメータ数が2個になっているか確認
-	if(args.length != 2) {
-		System.out.println("パラメータ数が過不足しています。パラメータは2個用意してください");
-		System.exit(1);
-	}
+
 
 	try {
-		//読み込みオブジェクトの作成
+		//パラメータ数が2個になっているか確認
+		if(args.length != 2) {
+			throw new IllegalArgumentException("パラメータ数が過不足しています。パラメータは2個用意してください");
+		}
+		//ファイルチェック
 		File file = new File(args[0]);
+		if(!file.exists()) {
+			throw new IOException("ファイルが存在しません");
+		}
+		//読み込みオブジェクトの作成
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
-
-		//ファイルチェック
-		if(!file.exists()) {
-			System.out.println("ファイルが存在しません");
-		}
 
 		//書き込みファイルの生成
 
@@ -57,12 +56,17 @@ public static void main(String[] args) {
 			bw.write(String.valueOf(sum));
 			bw.flush();
 			}catch(IOException e) {
+				System.out.println("ファイル入出力に関するエラー");
 				System.out.println(e);
 			}finally {
 				bw.close();
 				br.close();
 			}
 		}catch(IOException e) {
+			System.out.println("ファイル入出力に関するエラー");
+			System.out.println(e);
+		}catch(IllegalArgumentException e) {
+			System.out.println("パラメータのエラー");
 			System.out.println(e);
 		}
 	}
