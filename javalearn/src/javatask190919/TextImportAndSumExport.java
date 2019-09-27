@@ -53,7 +53,6 @@ public static void main(String[] args) {
 					num.add(data);
 
 					//変換した数値を合計値に足す
-
 					sum += Integer.parseInt(num.get(target));
 					target += 1;
 				}
@@ -61,6 +60,8 @@ public static void main(String[] args) {
 			catch(IllegalArgumentException e) {
 				System.out.println("数値以外または許可されない数値がテキストに含まれています");
 				System.out.println("エラーメッセージ：" + e);
+				bw.close();
+				br.close();
 				System.exit(1);
 			}
 
