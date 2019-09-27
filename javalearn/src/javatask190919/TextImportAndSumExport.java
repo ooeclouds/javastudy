@@ -16,7 +16,7 @@ public class TextImportAndSumExport {
  * @version 1.0
  */
 
-private static void main(String[] args) {
+public static void main(String[] args) {
 	/**
 	 * 処理を全て行なっているメソッド
 	 * @param args 入力と出力のファイル名
@@ -43,17 +43,26 @@ private static void main(String[] args) {
 		BufferedWriter bw = new BufferedWriter(fw);
 		try {
 			String data;
-			List<Integer> num = new ArrayList<Integer>();
+			List<String> num = new ArrayList<String>();
 			int sum = 0, target = 0;
 
-			//テキストの読み込み中の行が空白
-			while((data = br.readLine()) != null) {
-				//1行テキストを数値に変換し読み込む
-				num.add(Integer.parseInt(data));
 
-				//変換した数値を合計値に足す
-				sum += num.get(target);
-				target += 1;
+			try{
+				//テキストの読み込み中の行が空白
+				while((data = br.readLine()) != null) {
+					//1行テキストを数値に変換し読み込む
+					num.add(data);
+
+					//変換した数値を合計値に足す
+
+					sum += Integer.parseInt(num.get(target));
+					target += 1;
+				}
+			}
+			catch(IllegalArgumentException e) {
+				System.out.println("数値以外または許可されない数値がテキストに含まれています");
+				System.out.println("エラーメッセージ：" + e);
+				System.exit(1);
 			}
 
 			//テキストファイルに合計値を書き込む
@@ -65,7 +74,7 @@ private static void main(String[] args) {
 
 			}catch(IOException e) {
 				System.out.println("ファイル入出力に関するエラー");
-				System.out.println(e);
+				System.out.println("エラーメッセージ：" + e);
 			}finally {
 				//読み込みと書き込みファイルを閉じる
 				bw.close();
@@ -73,10 +82,10 @@ private static void main(String[] args) {
 			}
 		}catch(IOException e) {
 			System.out.println("ファイル入出力に関するエラー");
-			System.out.println(e);
+			System.out.println("エラーメッセージ：" + e);
 		}catch(IllegalArgumentException e) {
 			System.out.println("パラメータのエラー");
-			System.out.println(e);
+			System.out.println("エラーメッセージ：" + e);
 		}
 	}
 }
