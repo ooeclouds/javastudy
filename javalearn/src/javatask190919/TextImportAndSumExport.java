@@ -14,12 +14,12 @@ public class TextImportAndSumExport {
  * その中の総和を算出するプログラム
  * @author Shinnosuke Ooe
  * @version 1.0
+ * @param args 入力ファイル名　出力ファイル名　以上の2つをこの順序で用意
  */
 
 public static void main(String[] args) {
 	/**
 	 * 処理を全て行なっているメソッド
-	 * @param args 入力と出力のファイル名
 	 */
 
 	try {
@@ -45,7 +45,6 @@ public static void main(String[] args) {
 			String data;
 			List<String> num = new ArrayList<String>();
 			int sum = 0, target = 0;
-
 
 			try{
 				//テキストの読み込み中の行が空白
