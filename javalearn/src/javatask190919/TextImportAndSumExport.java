@@ -30,11 +30,13 @@ public class TextImportAndSumExport {
       if (args.length != 2) {
         throw new IllegalArgumentException("パラメータ数が過不足しています。パラメータは2個用意してください");
       }
-      //ファイルが存在する事を確認
+
+      //入力用テキストと出力用テキストが存在する事を確認
       File file = new File(args[0]);
       if (!file.exists()) {
         throw new IOException("ファイルが存在しません");
       }
+
       //読み込みオブジェクトの作成
       FileReader fr = new FileReader(file);
       BufferedReader br = new BufferedReader(fr);
@@ -50,7 +52,7 @@ public class TextImportAndSumExport {
         int sum = 0;
         int target = 0;
 
-        //テキストの読み込み中の行に値が入っている
+        //入力用テキストの読み込み中の行に値が入っている
         while ((data = br.readLine()) != null) {
           //1行テキストを数値に変換し読み込む
           num.add(data);
@@ -60,7 +62,7 @@ public class TextImportAndSumExport {
           target += 1;
         }
 
-        //テキストファイルに合計値を書き込む
+        //出力用テキストに合計値を書き込む
         bw.write(String.valueOf(sum));
         bw.flush();
 
